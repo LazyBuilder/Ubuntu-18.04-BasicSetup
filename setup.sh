@@ -25,8 +25,8 @@ echo "ENABLING UNIVERSAL REPOSITORIES : $(date '+%H:%M:%S   %d/%m/%y')" | tee -a
 bash "$FOLDER/1-enable-universal-repositories.sh" 2>&1 | tee -a $LOG 
 
 
-#echo "REMOVING BLOATWARE : $(date '+%H:%M:%S   %d/%m/%y')"
-#bash "$FOLDER/2-remove-bloatware.sh" >> $LOG 
+echo "REMOVING BLOATWARE : $(date '+%H:%M:%S   %d/%m/%y')" | tee -a $LOG
+bash "$FOLDER/2-remove-bloatware.sh" 2>&1 | tee -a $LOG
 
 echo "INSTALLING PROGRAMING ESSENTIALS : $(date '+%H:%M:%S   %d/%m/%y')" | tee -a $LOG
 bash "$FOLDER/3-install-programing-essentials.sh" 2>&1 | tee -a $LOG 
@@ -45,10 +45,6 @@ bash "$FOLDER/6-python-IDEs.sh" 2>&1 | tee -a $LOG
 
 echo "RUNNING BASIC UPDATES - FOR THE FINAL TIME: $(date '+%H:%M:%S   %d/%m/%y')" | tee -a $LOG
 bash "$FOLDER/0-basic-update.sh" 2>&1 | tee -a $LOG
-
-#sh ./install_TPLink_WN823N_Wifi_Driver.sh
-
-
 
 echo ""
 echo "Setup complete"
