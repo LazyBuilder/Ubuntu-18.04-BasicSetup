@@ -24,9 +24,8 @@ bash "$FOLDER/0-basic-update.sh" 2>&1 | tee -a $LOG
 echo "ENABLING UNIVERSAL REPOSITORIES : $(date '+%H:%M:%S   %d/%m/%y')" | tee -a $LOG
 bash "$FOLDER/1-enable-universal-repositories.sh" 2>&1 | tee -a $LOG 
 
-
 echo "REMOVING BLOATWARE : $(date '+%H:%M:%S   %d/%m/%y')" | tee -a $LOG
-bash "$FOLDER/2-remove-bloatware.sh" 2>&1 | tee -a $LOG
+bash "$FOLDER/2-remove-bloatware.sh" >> $LOG  | tee -a $LOG
 
 echo "INSTALLING PROGRAMING ESSENTIALS : $(date '+%H:%M:%S   %d/%m/%y')" | tee -a $LOG
 bash "$FOLDER/3-install-programing-essentials.sh" 2>&1 | tee -a $LOG 

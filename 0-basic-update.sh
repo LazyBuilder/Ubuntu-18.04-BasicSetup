@@ -9,9 +9,9 @@ apt-get dist-upgrade -y
 
 #Cleaning up system to remove unwanted files and archives
 #This will freeup space as well
-apt-get autoremove
+apt-get autoremove -y 
 apt-get check -y
-apt-get autoclean 
+apt-get autoclean -y
 echo ""
 echo "_____________________ 0-basic-update.sh : End _____________________"
 echo ""

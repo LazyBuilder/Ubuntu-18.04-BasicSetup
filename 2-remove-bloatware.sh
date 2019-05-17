@@ -3,51 +3,128 @@ echo ""
 echo "_____________________ 2-remove-bloatware.sh : Start _____________________"
 echo ""
 
-echo "Remove remaining oneconf, note, also removes software-center which you may not want"
-# Remove remaining oneconf, note, also removes software-center which you may not want
-apt-get purge oneconf oneconf-common python-ubuntu-sso-client ubuntu-sso-client ubuntu-sso-client-qt ubuntuone-client ubuntuone-client-data
+# The script is built based on https://help.ubuntu.com/community/Diet%20Ubuntu
+
+echo "Removing extra fonts"
+apt-get purge -y ttf-arabeyes
+apt-get purge -y ttf-arphic-uming
+apt-get purge -y ttf-indic-fonts-core
+apt-get purge -y ttf-kochi-gothic
+apt-get purge -y ttf-kochi-mincho
+apt-get purge -y ttf-lao
+apt-get purge -y ttf-malayalam-fonts
+apt-get purge -y ttf-thai-tlwg
+apt-get purge -y ttf-unfonts-core
+
+echo "Removing bluetooth capabilities"
+apt-get purge -y bluez-audio
+apt-get purge -y bluez-cups
+apt-get purge -y bluez-gnome
+apt-get purge -y bluez-utils
+
+echo "Removing Dial-up internet"
+apt-get purge -y ppp
+apt-get purge -y pppconfig
+apt-get purge -y pppoeconf wvdial
 
 echo "Remove account plugins that are privacy/etc. risks" 
-# Remove account plugins that are privacy/etc. risks
-apt-get purge account-plugin-aim account-plugin-facebook account-plugin-flickr account-plugin-google account-plugin-jabber account-plugin-salut account-plugin-twitter account-plugin-windows-live account-plugin-yahoo folks-common friends friends-dispatcher friends-facebook friends-twitter gnome-contacts nautilus-sendto unity-lens-friends unity-scope-gdrive unity-scope-musicstores unity-scope-zotero libfolks-eds25 libfriends0 mcp-account-manager-uoa rhythmbox-plugin-magnatune libaccount-plugin-google
+apt-get purge -y *facebook*
+apt-get purge -y *twitter*
+apt-get purge -y *flickr*
+apt-get purge -y *instagram*
 
-echo "Remove more bloatware from desktop"
-# Remove more bloatware from desktop
-apt-get purge gnome-accessibility-themes gnome-mines gnome-orca gnome-sudoku gnomine nautilus-sendto-empathy aisleriot  brltty cheese cheese-common example-content unity-plugin-scopes unity-scope-mediascanner2
+echo "Remove Various accessibility functions"
+
+apt-get purge -y gnome-orca 
+apt-get purge -y brltty
+apt-get purge -y brltty-x11
+apt-get purge -y gnome-accessibility-themes
+apt-get purge -y gnome-mag
+apt-get purge -y libgnome-mag2  
+
+echo "Remove VNC (remote control)"
+apt-get purge -y libgtk-vnc-1.0-0 
+apt-get purge -y vinagre 
+apt-get purge -y vino 
+
+echo "Remove fortune cookies"
+apt-get purge -y fortune-mod 
+
+echo "Remove speeahc synthesizer"
+apt-get purge -y espeak
+apt-get purge -y espeak-data 
+apt-get purge -y libespeak1 
+apt-get purge -y libgnome-speech7
+
+echo "Remove Example content for various desktop apps"
+apt-get purge -y example-content
+
+echo "Remove Mark Pilgrim’s Python tutorial"
+apt-get purge -y diveintopython 
+
+echo "Remove office packages"
+apt-get purge -y libreoffice*
+apt-get purge -y openoffice* 
+
+echo "Remove Amazon"
+rm /usr/share/applications/ubuntu-amazon-default.desktop
+rm /usr/share/unity-webapps/userscripts/unity-webapps-amazon/Amazon.user.js
+rm /usr/share/unity-webapps/userscripts/unity-webapps-amazon/manifest.json
 
 echo "Remove unity lens related packages"
 # Remove unity lens related packages
-apt-get purge telepathy-indicator unity-lens-music unity-lens-photos unity-lens-video unity-scope-audacious unity-scope-chromiumbookmarks unity-scope-clementine unity-scope-colourlovers unity-scope-devhelp unity-scope-firefoxbookmarks unity-scope-gmusicbrowser unity-scope-gourmet unity-scope-guayadeque unity-scope-musique unity-scope-openclipart unity-scope-texdoc unity-scope-tomboy unity-scope-yelp unity-webapps-common unity-webapps-qml unity-webapps-service xul-ext-unity xul-ext-websites-integration unity-scope-video-remote unity-voice-service unity-scope-virtualbox
+apt-get purge -y telepathy-indicator 
+apt-get purge -y unity-lens*
+apt-get purge -y unity*
+
 
 echo "Remove local mail clients"
-# Remove local mail clients if you only use webmail
-apt-get purge evolution-data-server* thunderbird*
-
-# Remove Zeitgeist event logger
-# NOTE: Disabled as it tries to remove nautilus and gedit that are essential
-#apt-get purge zeitgeist zeitgeist-core zeitgeist-datahub python-zeitgeist rhythmbox-plugin-magnatune rhythmbox-plugin-zeitgeist libzeitgeist-1.0-1 libzeitgeist-2.0-0 
-# Cannot remove libzeitgeist without removing nautilus, so remove all of the other components
-#apt-get purge zeitgeist zeitgeist-datahub zeitgeist-core python-zeitgeist rhythmbox-plugin-zeitgeist
+# Remove local mail clients if you only use webmail 
+apt-get purge -y thunderbird* 
+apt-get purge -y thunderbird
 
 echo "Remove ubuntu firefox extension"
 # Remove ubuntu firefox extension
-apt-get purge xul-ext-ubufox
+apt-get purge -y firefox*
 
 echo "Remove telepathy"
 # Remove telepathy
-apt-get purge telepathy-gabble telepathy-haze telepathy-idle telepathy-logger telepathy-mission-control-5 telepathy-salut
+apt-get purge -y telepathy-gabble 
+apt-get purge -y telepathy-haze 
+apt-get purge -y telepathy-idle 
+apt-get purge -y telepathy-logger 
+apt-get purge -y telepathy-mission-control-5 
+apt-get purge -y telepathy-salut
 
 echo "Remove totem media player"
 # Remove totem media player
-apt-get purge totem totem-common totem-plugins totem-mozilla
+apt-get purge -y totem 
+apt-get purge -y totem-common 
+apt-get purge -y totem-plugins 
+apt-get purge -y totem-mozilla
 
-echo "Remove rhythmbox iTunes Firefox plugin"
-# Remove rhythmbox iTunes Firefox plugin
-apt-get purge rhythmbox-mozilla
+echo "Remove Gnome games and associated data"
+apt-get purge -y gnome-games 
+apt-get purge -y gnome-games-data 
+apt-get purge -y gnome-cards-data
+apt-get purge -y gnome-mines 
+apt-get purge -y gnome-mahjongg 
+apt-get purge -y gnome-sudoku
+
+echo "Remove games"
+apt-get purge -y aisleriot 
+
+echo "Remove rhythmbox"
+apt-get purge -y rhythmbox*
 
 echo "Remove error submission daemon"
 # Remove error submission daemon
-apt-get purge whoopsie whoopsie-preferences
+apt-get purge -y whoopsie 
+apt-get purge -y whoopsie-preferences
+
+echo "Remove bit torrent client"
+apt-get purge -y transmission-common
+apt-get purge -y transmission-gtk
 
 # Clear out any packages that are no longer required at this point
 apt-get autoremove

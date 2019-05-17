@@ -5,10 +5,10 @@ echo ""
 echo "Getting the essentials"
 echo ""
 #Build essentials
-apt-get install build-essential wget unzip git curl ubuntu-make snapd synaptic -y
+apt-get install build-essential wget unzip git curl ubuntu-make snapd -y
 
 #Text Editors
-apt-get install nano vim nautilus -y  
+apt-get install nano vim -y  
 
 #System tools
 apt-get install glances terminator net-tools -y

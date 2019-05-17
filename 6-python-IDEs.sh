@@ -8,8 +8,6 @@ echo ""
 
 #Python IDEs
 snap install pycharm-community --classic
-snap install atom --classic
-snap install code --classic
 
 #Jupiter Notebook
 pip install jupyter 
